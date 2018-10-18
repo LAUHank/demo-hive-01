@@ -1,5 +1,8 @@
 # demo-hive-01
 
+hive version 1.2.1
+hadoop version 2.7.3
+
 ADD JAR /home/hdfs/lhl13/hive/hive-jar-with-dependencies.jar;
 
 create temporary function my_mask as 'cn.lhl.hive.udf.ValueMaskUDF';
@@ -26,3 +29,9 @@ select sname,
 my_agg(cname, score) 
 from student_score 
 group by sname;
+
+create temporary function my_min as 'cn.lhl.hive.udaf.MyMinUDAF';
+select my_min(score) from student;
+select teacher_id, my_min(score) 
+from student 
+group by teacher_id;
