@@ -4,9 +4,12 @@ import org.apache.hadoop.hive.ql.exec.UDAF;
 import org.apache.hadoop.hive.ql.exec.UDAFEvaluator;
 
 public class MyAvg extends UDAF {
+	
+	//MyDoubleAvg必须是一个public static的类
 	public static class MyDoubleAvg implements UDAFEvaluator {
 		
-		public static class MyDoublePR {
+		//MyDoublePR Hadoop会自动进行序列化
+		private static class MyDoublePR {
 			public Double sum = 0.0;
 			public Integer count = 0;
 		}
