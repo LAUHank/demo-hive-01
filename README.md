@@ -55,6 +55,7 @@ select 2.0 as score
 union all 
 select 3.0 as score 
 )t;
+
 select avg(score) from 
 (
 select 1.0 as score 
@@ -62,6 +63,28 @@ union all
 select 2.0 as score 
 union all 
 select 3.0 as score 
+)t;
+
+select my_avg(score) from 
+(
+select 1 as score 
+union all 
+select 2 as score 
+union all 
+select 3 as score 
+union all 
+select 4 as score 
+)t;
+
+select my_avg(score) from 
+(
+select 1 as score 
+union all 
+select 2 as score 
+union all 
+select 3.0 as score 
+union all 
+select 4 as score 
 )t;
 
 create temporary function my_group_concat as 'cn.lhl.hivev2.udaf.MyGroupConcat';
